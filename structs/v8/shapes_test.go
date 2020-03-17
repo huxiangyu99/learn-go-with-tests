@@ -5,12 +5,25 @@ import (
 )
 
 func TestPerimeter(t *testing.T) {
-	rectangle := Rectangle{10.0, 10.0}
-	got := Perimeter(rectangle)
-	want := 40.0
 
-	if got != want {
-		t.Errorf("got %g want %g", got, want)
+	perimeterTests := []struct {
+		name  string
+		shape Shape
+		want  float64
+	}{
+		{name: "Rectangle", shape: Rectangle{12, 6}, want: 36.0},
+		{name: "Circle", shape: Circle{10}, want: 62.83185307179586},
+		{name: "Triangle", shape: Triangle{Base: 12, Height: 6}, want: 0.0},
+	}
+
+	for _, tt := range perimeterTests {
+		// using tt.name from the case to use it as the `t.Run` test name
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Perimeter()
+			if got != tt.want {
+				t.Errorf("%#v got %.2f want %.2f", tt.shape, got, tt.want)
+			}
+		})
 	}
 }
 
@@ -27,13 +40,12 @@ func TestArea(t *testing.T) {
 	}
 
 	for _, tt := range areaTests {
+		// using tt.name from the case to use it as the `t.Run` test name
 		t.Run(tt.name, func(t *testing.T) {
 			got := tt.shape.Area()
 			if got != tt.hasArea {
-				t.Errorf("%#v got %g want %g", tt.shape, got, tt.hasArea)
+				t.Errorf("%#v got %.2f want %.2f", tt.shape, got, tt.hasArea)
 			}
 		})
-
 	}
-
 }

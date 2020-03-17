@@ -5,6 +5,7 @@ import "math"
 // Shape is implemented by anything that can tell us its Area
 type Shape interface {
 	Area() float64
+	Perimeter() float64
 }
 
 // Rectangle has the dimensions of a rectangle
@@ -19,7 +20,7 @@ func (r Rectangle) Area() float64 {
 }
 
 // Perimeter returns the perimeter of a rectangle
-func Perimeter(rectangle Rectangle) float64 {
+func (rectangle Rectangle) Perimeter() float64 {
 	return 2 * (rectangle.Width + rectangle.Height)
 }
 
@@ -33,6 +34,11 @@ func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
 }
 
+// Perimeter returns the perimeter of a circle
+func (c Circle) Perimeter() float64 {
+	return math.Pi * 2 * c.Radius
+}
+
 // Triangle represents the dimensions of a triangle
 type Triangle struct {
 	Base   float64
@@ -42,4 +48,9 @@ type Triangle struct {
 // Area returns the area of the triangle
 func (c Triangle) Area() float64 {
 	return (c.Base * c.Height) * 0.5
+}
+
+// Perimeter returns the perimeter of a Triangle
+func (c Triangle) Perimeter() float64 {
+	return 0
 }
