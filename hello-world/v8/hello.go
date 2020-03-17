@@ -4,9 +4,11 @@ import "fmt"
 
 const spanish = "Spanish"
 const french = "French"
+const chinese = "Chinese"
 const englishHelloPrefix = "Hello, "
 const spanishHelloPrefix = "Hola, "
 const frenchHelloPrefix = "Bonjour, "
+const chineseHelloPrefix = "你好， "
 
 // Hello returns a personalised greeting in a given language
 func Hello(name string, language string) string {
@@ -23,6 +25,8 @@ func greetingPrefix(language string) (prefix string) {
 		prefix = frenchHelloPrefix
 	case spanish:
 		prefix = spanishHelloPrefix
+	case chinese:
+		prefix = chineseHelloPrefix
 	default:
 		prefix = englishHelloPrefix
 	}
